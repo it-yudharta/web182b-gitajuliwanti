@@ -14,7 +14,8 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        return view('distributor.index');
+        $distributor = Distributor::paginate(10);
+        return view('distributor.index', ['distributors' => $distributor]);
     }
 
     /**
@@ -43,7 +44,15 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item= new Distributor;
+        $item->kode=$request['kode'];
+        $item->nama=$request['nama'];
+        $item->jekel=$request['jekel'];
+        $item->alamat=$request['alamat'];
+        $item->nohp=$request['nohp'];
+        $item->save();
+
+        return redirect('distributor');
     }
 
     /**
@@ -54,7 +63,8 @@ class DistributorController extends Controller
      */
     public function show(Distributor $distributor)
     {
-        //
+        $item = Distributor::paginate(10);
+        return view('distributor.show', ['distributors' => $item]);
     }
 
     /**
@@ -63,9 +73,10 @@ class DistributorController extends Controller
      * @param  \App\Distributor  $distributor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Distributor $distributor)
+    public function edit($id)
     {
-        //
+        $item = Distributor::find($id);
+        return view('distributor.edit',['distributors' =>$item]);
     }
 
     /**
@@ -75,9 +86,17 @@ class DistributorController extends Controller
      * @param  \App\Distributor  $distributor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Distributor $distributor)
+    public function update(Request $request, $id)
     {
-        //
+        $item = distributor::find($id);
+        $item->kode=$request['kode'];
+        $item->nama=$request['nama'];
+        $item->jekel=$request['jekel'];
+        $item->alamat=$request['alamat'];
+        $item->nohp=$request['nohp'];
+        $item->update();
+
+        return redirect('/distributor/show');
     }
 
     /**
@@ -86,8 +105,11 @@ class DistributorController extends Controller
      * @param  \App\Distributor  $distributor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Distributor $distributor)
+    public function destroy($id)
     {
-        //
+        $item = Distributor::where('id',$id);
+        $item->delete();
+
+        return redirect()->back();
     }
 }

@@ -21,4 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/distributor', 'DistributorController@index');
 Route::post('/distributor/create', 'DistributorController@create');
-Route::post('/distributor/show', 'DistributorController@show');
+Route::get('/distributor/show', 'DistributorController@show');
+Route::get('/distributor/store', 'DistributorController@store');
+Route::get('/distributor/{id}/edit', 'DistributorController@edit');
+Route::get('/distributor/{id}/update', 'DistributorController@update');
+Route::get('/distributor/{id}/hapus', 'DistributorController@destroy');
