@@ -26,3 +26,11 @@ Route::get('/distributor/store', 'DistributorController@store');
 Route::get('/distributor/{id}/edit', 'DistributorController@edit');
 Route::get('/distributor/{id}/update', 'DistributorController@update');
 Route::get('/distributor/{id}/hapus', 'DistributorController@destroy');
+
+Route::get('/produk', 'ProdukController@index');
+Route::post('/produk/create', 'ProdukController@create');
+Route::get('/produk/show', 'ProdukController@show');
+Route::get('/produk/store', 'ProdukController@store');
+Route::get('/produk/{id}/edit', 'ProdukController@edit');
+Route::get('/produk/{id}/update', 'ProdukController@update');
+Route::get('/produk/{id}/hapus', 'ProdukController@destroy');
